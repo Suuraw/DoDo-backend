@@ -20,6 +20,10 @@ const taskSchema=new Schema({
     createdAt:{
         type: String,
         required:true
+    },
+    dueDate:{
+        type:String,
+        required:true
     }
 });
 export default taskSchema;

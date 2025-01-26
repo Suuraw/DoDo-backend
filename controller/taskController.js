@@ -2,13 +2,14 @@ import Task from "../model/taskModel.js";
 
 export const addTask = async (req, res) => {
   try {
-    const { title, description, iscompleted, createdBy, createdAt } = req.body;
+    const { title, description, iscompleted, createdBy, createdAt,dueDate } = req.body;
     const taskData = {
       title: title,
       description: description,
       iscompleted: iscompleted,
       createdBy: createdBy,
       createdAt: createdAt,
+      dueDate:dueDate
     };
     await Task.create(taskData);
     return res.status(200).json({ message: "Data recieved", data: req.body });
@@ -35,13 +36,14 @@ export const updateTask = async (req, res) => {
   try {
     const { id } = req.params;
     const task = await Task.findOne({ _id: id });
-    const { title, description, iscompleted, createdBy, createdAt } = req.body;
+    const { title, description, iscompleted, createdBy, createdAt,dueDate } = req.body;
     const result = await task.updateOne({
       title: title,
       description: description,
       iscompleted: iscompleted,
       createdBy: createdBy,
       createdAt: createdAt,
+      dueDate:dueDate
     });
     if (result.acknowledged) {
       return res.status(200).json({ message: "Task Updated successfully" });
